@@ -312,7 +312,7 @@
                 const urlParts = url.split('/');
                 const fileName = urlParts.pop();
                 const baseUrl = urlParts.join('/');
-                const filePrefix = '_' + fileName.split('.')[0].split('_')[1];
+                const filePrefix = fileName.split('.')[0].split('_')[1];
         
                 // Construct srcset attribute with the specified sizes and dynamic number
                 const srcset = `
