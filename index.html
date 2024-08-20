@@ -12,24 +12,23 @@
             padding: 20px;
         }
         #imageGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
+            column-count: 4; /* Number of columns */
+            column-gap: 15px;
         }
         .imageItem {
-            width: 100%;
             background-color: white;
+            display: inline-block;
+            margin-bottom: 15px;
+            width: 100%;
+            break-inside: avoid;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            transition: transform 0.2s;
         }
         .imageItem img {
             width: 100%;
             display: block;
-        }
-        .imageItem:hover {
-            transform: scale(1.05);
+            border-bottom: 2px solid #f4f4f4;
         }
     </style>
 </head>
