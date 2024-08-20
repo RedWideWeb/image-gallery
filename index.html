@@ -13,23 +13,32 @@
         }
         #imageGrid {
             column-count: 4; /* Number of columns */
-            column-gap: 15px;
+            gap: 0;
         }
         .imageItem {
             background-color: white;
             display: inline-block;
-            margin-bottom: 15px;
             width: 100%;
             break-inside: avoid;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             overflow: hidden;
         }
         .imageItem img {
             width: 100%;
             display: block;
-            border-bottom: 2px solid #f4f4f4;
         }
+
+        @media (max-width: 1024px) {
+            #imageGrid {
+                column-count: 3;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #imageGrid {
+                column-count: 2;
+            }
+        }
+
     </style>
 </head>
 <body>
