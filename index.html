@@ -301,19 +301,47 @@
 
         function createImageGrid() {
             const imageGrid = document.getElementById('imageGrid');
-
+        
             imageUrls.forEach(url => {
                 const imageItem = document.createElement('div');
                 imageItem.className = 'imageItem';
-
+        
                 const img = document.createElement('img');
-                img.src = url;
-                img.alt = 'Image';
-
+        
+                // Base URL without the size part
+                const baseUrl = url.split('/').slice(0, -1).join('/');
+        
+                // Construct srcset attribute with multiple sizes
+                const srcset = `
+                    ${baseUrl}/0_0_320_N.webp 320w,
+                    ${baseUrl}/0_0_480_N.webp 480w,
+                    ${baseUrl}/0_0_640_N.webp 640w,
+                    ${baseUrl}/0_0_800_N.webp 800w,
+                    ${baseUrl}/0_0_1024_N.webp 1024w,
+                    ${baseUrl}/0_0_1200_N.webp 1200w,
+                    ${baseUrl}/0_0_1600_N.webp 1600w,
+                    ${baseUrl}/0_0.webp 2000w
+                `;
+        
+                // Set the src and srcset attributes
+                img.src = `${baseUrl}/0_0_640_N.webp`; // Default src for lower resolution
+                img.srcset = srcset;
+        
+                // Define sizes attribute for various screen widths
+                img.sizes = `
+                    (max-width: 320px) 100vw,
+                    (max-width: 640px) 100vw,
+                    (max-width: 768px) 100vw,
+                    (max-width: 1024px) 50vw,
+                    (max-width: 1200px) 50vw,
+                    (min-width: 1201px) 33vw
+                `;
+        
                 imageItem.appendChild(img);
                 imageGrid.appendChild(imageItem);
             });
         }
+
 
         // Generate the grid on page load
         window.onload = createImageGrid;
